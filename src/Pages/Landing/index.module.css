@@ -1,0 +1,15 @@
+.container {
+    width: 99.5vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.all__courses__section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: #282a35;
+    gap: 2rem;
+}
