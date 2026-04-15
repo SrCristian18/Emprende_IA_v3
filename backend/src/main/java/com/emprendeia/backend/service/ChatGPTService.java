@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,15 +20,26 @@ import okhttp3.Response;
 public class ChatGPTService {
 
     private static final String API_URL = "https://api.groq.com/openai/v1/chat/completions";
+    
     private final String apiKey;
     private final OkHttpClient client;
-    private final ObjectMapper mapper;
+//    private final ObjectMapper mapper; borrar
+    @Autowired
+    private ObjectMapper mapper;
 
     public ChatGPTService() {
         Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+  //      this.apiKey = dotenv.get("GROQ_API_KEY"); borrar
         this.apiKey = dotenv.get("GROQ_API_KEY");
-        this.client = new OkHttpClient();
-        this.mapper = new ObjectMapper();
+
+        if (this.apiKey == null || this.apiKey.isBlank()){
+            throw new RuntimeException("API Key de Groq no configurada");
+        }
+  //      this.client = new OkHttpClient();borrar
+        this.client = new OkHttpClient.Builder()
+        .callTimeout(java.time.Duration.ofSeconds(30))
+        .build();
+  //      this.mapper = new ObjectMapper(); borrar
     }
 
     public String obtenerRespuesta(String pregunta, String contexto, List<String> preguntasModulo) throws IOException {
@@ -39,10 +51,19 @@ public class ChatGPTService {
             return "No se proporcionó información del módulo.";
         }
 
+        /*
         if (preguntasModulo != null && !preguntasModulo.isEmpty()) {
             for (String preguntaModulo : preguntasModulo) {
                 if (pregunta.toLowerCase().contains(preguntaModulo.toLowerCase())) {
                     return "Parece que tu pregunta coincide con una del curso. Intenta reflexionar sobre el contenido para comprenderla mejor.";
+                }
+            }
+        }
+        */
+       if (preguntasModulo != null) {
+           for (String p : preguntasModulo) {
+                if (pregunta.toLowerCase().contains(p.toLowerCase().substring(0, Math.min(10, p.length())))) {
+                    return "Esa pregunta hace parte de la evaluación. Intenta analizar el contenido del módulo.";
                 }
             }
         }
@@ -61,10 +82,19 @@ public class ChatGPTService {
 
         String json = mapper.writeValueAsString(Map.of(
                 "model", "llama-3.3-70b-versatile",
-                "messages", List.of(
+/*                "messages", List.of(
                         Map.of("role", "system", "content",
                                 "Eres un asistente educativo, amable y motivador, que guía al estudiante sin revelar respuestas de evaluación."),
-                        Map.of("role", "user", "content", prompt))));
+                        Map.of("role", "user", "content", prompt))));                
+*/
+                "messages",List.of(
+                    Map.of("role", "system", "content",
+                    "Eres un asistente educativo, amable y motivador."),
+                    Map.of("role", "system", "content",
+                     "Contexto del módulo: " + contexto),
+                    Map.of("role", "system", "content",
+                        "Preguntas del módulo: " + preguntasModulo),
+                    Map.of("role", "user", "content", pregunta))));
 
         Request request = new Request.Builder()
                 .url(API_URL)
