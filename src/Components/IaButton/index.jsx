@@ -6,7 +6,8 @@ const IaButton = () => {
   const [showChat, setShowChat] = useState(false);
   const [animateOut, setAnimateOut] = useState(false);
   const [input, setInput] = useState("");           // texto que el usuario escribe -> campo "pregunta"
-  const [contexto, setContexto] = useState("economia, emprendimiento y habilidades emprendedoras, negocios"); 
+//  const [contexto, setContexto] = useState("economia, emprendimiento y habilidades emprendedoras, negocios"); 
+  const contexto = "economia, emprendimiento y habilidades emprendedoras, negocios"; 
 
   const [messages, setMessages] = useState([
     { from: "bot", text: "Hola! Soy tu asistente." }
@@ -15,7 +16,9 @@ const IaButton = () => {
   const messagesRef = useRef(null);
 
   // endpoint desde .env (Vite). Fallback a localhost si no está la var.
-  const endpoint = import.meta.env.VITE_API_URL || "https://emprende-ia-service.onrender.com/api/chat";
+  //se coloca en comentario la versión anterior por si hay un problema, se pueda saber qué puede ser
+//  const endpoint = import.meta.env.VITE_API_URL || "https://emprende-ia-service.onrender.com/api/chat";
+  const endpoint = "http://localhost:8080/api/chat";
 
   useEffect(() => {
     if (messagesRef.current) {

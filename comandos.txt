@@ -1,0 +1,8 @@
+Levantar backend
+.\mvnw.cmd spring-boot:run
+
+levantar front end
+1. Si no se hizo, primero npm install
+
+luego
+npm run dev
