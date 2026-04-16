@@ -68,6 +68,7 @@ public class ChatGPTService {
             }
         }
 
+        /* se sugiere quitar pero se está guardando el contexto dado que es más específico
         String prompt = String.format(
                 "Eres un asistente educativo especializado en apoyar a pequeños emprendedores de cualquier área. " +
                         "Tu función es orientar y ayudar a comprender los conceptos del curso, brindando explicaciones claras y prácticas. "
@@ -79,7 +80,7 @@ public class ChatGPTService {
                         "El emprendedor pregunta: %s. " +
                         "Si la pregunta del emprendedor coincide o es una reformulación de una de las preguntas del módulo, no la respondas directamente y recomiéndale revisar esa parte del contenido.",
                 contexto, preguntasModulo, pregunta);
-
+        */
         String json = mapper.writeValueAsString(Map.of(
                 "model", "llama-3.3-70b-versatile",
 /*                "messages", List.of(
