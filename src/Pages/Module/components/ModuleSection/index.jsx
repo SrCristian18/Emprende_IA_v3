@@ -3,30 +3,24 @@ import PropTypes from "prop-types";
 import { Box, Button, IconButton, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import styles from "./index.module.css"; // crea este archivo CSS o adapta tu index.module.css
+import styles from "./index.module.css"; 
 import IntroSlide from "../slides/IntroSlide";
 import { Link, useNavigate } from "react-router-dom";
-import { Home, HomeFilled, HomeMaxRounded, HomeOutlined, HomeRepairService, HomeRounded, HomeWork } from "@mui/icons-material";
-import ObjectivesSlide from "../slides/ObjectivesSlide";
+import { HomeRounded } from "@mui/icons-material";
 import SlideRenderer from "../SlideRenderer";
 
 /**
  * ModuleSection
- * Props:
- *  - sections: array de slides (construido en Module.jsx)
- *  - currentIndex: índice actual (number)
- *  - onPrev, onNext, onJump: funciones para controlar navegación
- *  - course: módulo completo (para datos del curso si hace falta)
  */
 export const ModuleSection = ({ sections = [], currentIndex = 0, onPrev, onNext, onJump, course }) => {
     const containerRef = useRef(null);
-    const navigate = useNavigate();    // Enfocar la slide actual para accesibilidad
+    const navigate = useNavigate();
+
     useEffect(() => {
         const el = containerRef.current;
         if (el) el.focus();
     }, [currentIndex]);
 
-    // Navegación por teclado: izquierda / derecha
     const handleKey = useCallback(
         (ev) => {
             if (ev.key === "ArrowRight") {
@@ -48,9 +42,11 @@ export const ModuleSection = ({ sections = [], currentIndex = 0, onPrev, onNext,
     }
 
     const slide = sections[currentIndex];
+    
+    // Función que nos lleva a la Landing principal
     const goToHome = () => {
-        navigate("/")
-    }
+        navigate("/");
+    };
 
     return (
         <div
@@ -60,19 +56,14 @@ export const ModuleSection = ({ sections = [], currentIndex = 0, onPrev, onNext,
             aria-label={`Slide ${currentIndex + 1} de ${sections.length}`}
         >
             <div className={styles.slide_wrapper} id={`module-section-${currentIndex}`}>
-                {/* Header simple con título del curso + posición */}
                 <header className={styles.slide_header}>
-                    {
-                        <Link to="/" className={styles.logo__btn}>EmprendIA</Link>
-                    }
+                    <Link to="/" className={styles.logo__btn}>EmprendIA</Link>
                 </header>
 
-                {/* Contenido principal */}
                 <main className={styles.slide_main}>
                     <SlideRenderer slide={slide} course={course} onJump={onJump}/>
                 </main>
 
-                {/* Footer / controles */}
                 <footer className={styles.slide_footer}>
                     {/* BTN ANTERIOR */}
                     <div className={styles.footer_left}>
@@ -87,8 +78,7 @@ export const ModuleSection = ({ sections = [], currentIndex = 0, onPrev, onNext,
                         </IconButton>
                     </div>
 
-                    {/* BTN INICIO */}
-
+                    {/* CONTENEDOR CENTRAL: CASITA / FINALIZAR */}
                     <div className={styles.action__button__container}>
                         {
                             currentIndex === sections.length - 1 ?
@@ -99,25 +89,24 @@ export const ModuleSection = ({ sections = [], currentIndex = 0, onPrev, onNext,
                                     Finalizar
                                 </button>
                                 :
-
-                                
+                                /* CAMBIO AQUÍ: Ahora la casa usa goToHome en lugar de onJump(0) */
                                 <HomeRounded
                                     sx={{
-                                        color: '#5955b3',   // tu color personalizado
-                                        fontSize: 40,     
-                                        zIndex:6  // tamaño del ícono
+                                        color: '#5955b3',
+                                        fontSize: 40,
+                                        zIndex: 6,
+                                        cursor: 'pointer' // Para que aparezca la manito al pasar el mouse
                                     }}
-                                    onClick={() => onJump(0)}
+                                    onClick={goToHome} 
                                     className={styles.start__btn}
                                 />
-
                         }
-
                     </div>
-                    {/* BTN NEXT */}
+
+                    {/* BTN SIGUIENTE */}
                     <div className={styles.footer_center}>
                         <IconButton
-                            aria-label="anterior"
+                            aria-label="siguiente"
                             onClick={onNext}
                             disabled={currentIndex === sections.length - 1}
                             size="large"
@@ -125,11 +114,7 @@ export const ModuleSection = ({ sections = [], currentIndex = 0, onPrev, onNext,
                         >
                             <ArrowForwardIosIcon />
                         </IconButton>
-
-
                     </div>
-
-
                 </footer>
             </div>
         </div>
