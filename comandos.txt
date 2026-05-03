@@ -1,0 +1,14 @@
+PARA LEVANTAR SIN DOCKER
+¡NO USAR MÁS!
+Levantar backend
+.\mvnw.cmd spring-boot:run
+
+levantar front end
+1. Si no se hizo, primero npm install
+
+luego
+npm run dev
+
+PARA LEVANTAR CON DOCKER
+abrir un terminal desde la raiz del proyecto y ejecutar el comando
+docker-compose up --build

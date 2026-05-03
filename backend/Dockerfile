@@ -1,20 +1,24 @@
-# Imagen base con JDK 21 compatible con Spring Boot 3.5
-FROM eclipse-temurin:21-jdk
-
-# Directorio de trabajo dentro del contenedor
+# 1. Usamos una imagen de Maven para compilar el código (Etapa de construcción)
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 
-# Copiar todo el backend al contenedor
-COPY . .
+# Copiamos el archivo de configuración y descargamos dependencias
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Dar permisos al Maven Wrapper
-RUN chmod +x mvnw
+# Copiamos el código fuente y generamos el archivo ejecutable (.jar)
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Compilar el proyecto y generar el .jar
-RUN ./mvnw clean package -DskipTests
+# 2. Usamos una imagen ligera de Java para ejecutar el archivo (Etapa de ejecución)
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
 
-# Exponer el puerto (Spring Boot usa 8080)
+# Copiamos el archivo .jar generado en la etapa anterior
+COPY --from=build /app/target/*.jar app.jar
+
+# Exponemos el puerto de Spring Boot
 EXPOSE 8080
 
-# Arrancar la aplicación
-CMD ["java", "-jar", "target/emprende-ia-backend-0.0.1-SNAPSHOT.jar"]
+# Este es el comando final que equivale a tu "run"
+ENTRYPOINT ["java", "-jar", "app.jar"]

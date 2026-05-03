@@ -1,11 +1,13 @@
 package com.emprendeia.backend.controller;
 
+import com.emprendeia.backend.dto.ChatResponse;
 import com.emprendeia.backend.service.ChatGPTService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class ChatController {
                     mapper.getTypeFactory().constructCollectionType(List.class, String.class));
 
             String respuesta = chatGPTService.obtenerRespuesta(pregunta, contexto, preguntasModulo);
-            return ResponseEntity.ok(Map.of("respuesta", respuesta));
+            return ResponseEntity.ok(new ChatResponse(respuesta));
 
         } catch (Exception e) {
             return ResponseEntity.status(500).body(Map.of("error", "Error procesando la solicitud: " + e.getMessage()));
