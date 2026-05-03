@@ -1,0 +1,18 @@
+services:
+  backend:
+    build: ./backend
+    container_name: backend-asistente
+    ports:
+      - "8080:8080"
+    # Esto carga tu archivo .env automáticamente al backend
+    env_file:
+      - ./backend/.env 
+
+  frontend:
+    build: .
+    container_name: frontend-react
+    ports:
+      - "80:80"
+    # El front espera a que el back esté listo
+    depends_on:
+      - backend
