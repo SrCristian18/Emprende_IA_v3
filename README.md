@@ -27,7 +27,7 @@ Descargamos la aplicación para el sistema operativo que disponemos. Posteriomen
 
 Seguido, debemos abrir un terminal desde la raiz del proyecto, es decir, desde: Emprende_IA_v3
 Allí ejecutamos el comando: 
-docker-compose up -d
+docker-compose up -d --build
 
 Después de haber hecho eso, y que el levantamiento sea de forma correcta, debemos dirigirnos a la dirección para ver el app funcionando.
 
