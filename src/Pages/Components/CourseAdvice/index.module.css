@@ -1,64 +1,157 @@
-.course__section__container{
+/* --- CONTENEDOR PRINCIPAL: Look Empresarial Premium --- */
+.course__section__container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 60vh;
-    box-sizing: border-box;
-}
-.info__section{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 50%;
-    gap: 1rem;
-    align-items: center;
-}
-.info__section h2{
-    font-size: 4rem;
-    font-weight: 900;
-    font-family: "Manrope", sans-serif;
-}
-.info__section h6{
-    font-size: 1.2rem;
-    font-weight: 900;
-}
-.options__container{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    padding: 60px 8%;
+    margin: 60px auto;
+    width: 92%;
+    max-width: 1300px;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    
+    /* Fondo oscuro profundo coherente con el inicio */
+    background: #0b0e1a; 
+    
+    /* Borde sutil estilo cristal */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* Sombra pesada para profundidad */
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+    z-index: 1;
 }
 
-.course__section__container img{
-    max-width: 30%;
+/* Efecto "Vivo": Resplandor sutil basado en el color del módulo */
+.course__section__container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    /* Usamos la variable --module-color que inyectamos desde el JS */
+    background: radial-gradient(circle, var(--module-color) 0%, transparent 70%);
+    opacity: 0.12;
+    filter: blur(50px);
+    z-index: -1;
+    pointer-events: none;
 }
-.option{
-    padding: 0.7rem 1rem;
-    border-radius: 4rem;
+
+.info__section {
+    flex: 1;
+    z-index: 2;
+    max-width: 650px;
+}
+
+/* --- TÍTULO --- */
+.info__section h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 25px;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+}
+
+/* --- SUBTÍTULO --- */
+.info__section h6 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+}
+
+/* --- CONTENEDOR DE OPCIONES: Botones en una línea --- */
+.options__container {
+    display: flex;
+    flex-direction: row; /* Fuerza la línea horizontal */
+    align-items: center;
+    gap: 15px; /* Espacio entre ellos */
+    margin-top: 35px;
+    flex-wrap: wrap; /* Permite bajar si el espacio es muy pequeño */
+}
+
+/* --- BOTONES MODERNOS --- */
+.option {
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap; /* Evita que el texto salte de línea dentro del botón */
+}
+
+/* El principal: Color Oro */
+.aprende {
+    background: #d4b46c;
+    color: #0b0e1e;
+    box-shadow: 0 10px 25px rgba(212, 180, 108, 0.25);
+}
+
+/* Los secundarios: Estilo Cristal oscuro */
+.video, .ref {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.video:hover, .ref:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- IMAGEN: Con Glow Dinámico --- */
+.image__wrapper {
+    flex: 0.8;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.course__section__container img {
     width: 100%;
-    font-family: "Manrope", sans-serif;
-    font-weight: 600;
+    max-width: 450px;
+    height: auto;
+    object-fit: contain;
+    /* El drop-shadow se beneficia del color que llega del JS */
+    transition: transform 0.6s ease;
 }
-.aprende{
-    color: #fff;
-    background-color: #5955b3;
+
+/* Animación al pasar el mouse por la tarjeta */
+.course__section__container:hover img {
+    transform: scale(1.05) translateY(-10px);
 }
-.video{
-    
-    background-color: #FFF4A3;
-}
-.ref{
-    color: #fff;
-    background-color: #282A35;
-}
-.aprende:hover{
-    
-    background-color: #3c3979;
-}
-.video:hover{
-    
-    background-color: #e7de95;
-}
-.ref:hover{
-    
-    background-color: #000000;
+
+/* --- AJUSTE PARA MÓVILES --- */
+@media (max-width: 968px) {
+    .course__section__container {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 50px 5%;
+        margin: 30px auto;
+    }
+
+    .info__section {
+        max-width: 100%;
+        margin-top: 40px;
+    }
+
+    .options__container {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .course__section__container img {
+        width: 80%;
+        max-width: 350px;
+    }
 }

@@ -1,44 +1,131 @@
-.banner__container{
-    min-height: 60vh;
-    background-color: #282a35;
-    color: #fff;
+/* --- HERO SECTION: PROFUNDIDAD TOTAL --- */
+.hero__section {
+    position: relative;
+    width: 100%;
+    /* Aumentamos el padding inferior para que el buscador tenga su propio espacio vital */
+    padding: 180px 5% 160px; 
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    padding-top: 200px;
-    padding-bottom: 100px;
+    z-index: 10; /* Base para el contenido */
+    
+    background-color: #0b0e1e;
+    background-image: 
+        radial-gradient(at 15% 15%, rgba(89, 85, 179, 0.4) 0px, transparent 50%), 
+        radial-gradient(at 85% 15%, rgba(212, 180, 108, 0.3) 0px, transparent 50%),
+        radial-gradient(at center, #101428 0%, #0b0e1e 100%);
 }
-.banner__container h1{
-    font-size: 5rem;
-    font-weight: 900;
-}
-.banner__container h3{
-    color: #FFF4A3;
-    font-weight: 900;
 
+/* --- TEXTOS: IMPACTO VISUAL --- */
+.hero__title {
+    font-size: clamp(3.5rem, 9vw, 5.8rem);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    line-height: 0.9;
+    /* Degradado metálico real */
+    background: linear-gradient(180deg, #ffffff 30%, #d4b46c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+    letter-spacing: -3px;
 }
-.search__container{
-    background-color: #fff;
-    min-width: 40%;
+
+.hero__subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 4rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    max-width: 800px;
+}
+
+/* --- BUSCADOR: EL PROTAGONISTA (Sin recortes) --- */
+.search__box {
     display: flex;
-    border-radius: 4rem;
-    overflow: hidden;
-}
-.search__container input{
+    align-items: center;
     width: 100%;
-    color: #282a35;
-    padding-left: 2rem;    
+    max-width: 900px; /* Más ancho para impacto máximo */
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 100px;
+    /* USAMOS PADDING SUPERIOR E INFERIOR: Da la altura y previene recortes */
+    padding: 8px 12px 8px 40px; 
+    border: 1.5px solid rgba(212, 180, 108, 0.45);
+    position: relative;
+    z-index: 50; /* Por encima de TODO */
+    
+    /* Glow dorado exterior */
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.6), 
+                0 0 30px rgba(212, 180, 108, 0.15); 
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
-.search__container a{
-    background-color: #5955b3;
-    padding: 0.5rem 1.5rem ;
-    max-width: 5rem;
+
+.search__box:focus-within {
+    transform: scale(1.02) translateY(-5px);
+    border-color: #d4b46c;
+    box-shadow: 0 0 80px rgba(212, 180, 108, 0.3), 0 30px 60px rgba(0,0,0,0.7);
 }
-.search__container a:hover{
-    background-color: #413e83;
+
+.search__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1.5rem; /* Texto más grande y vivo */
+    font-weight: 500;
+    /* REMOVEMOS: height: 100%; (Centrado automático con padding del padre) */
+    padding: 0; /* Aseguramos margen consistente */
 }
-.banner__wave{
-    background-color: #fff;
+
+.search__input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* --- BOTÓN ORO GIGANTE --- */
+.search__btn {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #fceabb 0%, #f8b500 50%, #fceabb 100%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0b0e1e;
+    box-shadow: 0 10px 25px rgba(248, 181, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.search__btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: brightness(1.2);
+}
+
+.search__btn svg {
+    width: 30px;
+    height: 30px;
+    stroke-width: 3.5;
+}
+
+/* --- LA OLA: SINCRONIZACIÓN PERFECTA --- */
+.banner__wave {
+    display: block;
+    width: 100%;
+    height: 140px;
+    /* Subimos la ola pero solo lo justo para que el buscador NO se tape */
+    margin-top: -100px; 
+    position: relative;
+    z-index: 5; /* Por debajo del buscador siempre */
+    background-color: transparent;
+    pointer-events: none;
+}
+
+#wavepath {
+    /* El color de fondo de la siguiente sección (Módulos) */
+    fill: #1a1c23; 
 }

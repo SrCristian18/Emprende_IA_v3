@@ -5,80 +5,87 @@ import { useNavigate } from "react-router-dom";
 export const CourseAdvice = ({ title, subtitle, img, color, id, pdfUrl, videoUrl }) => {
     const navigate = useNavigate();
 
-    const handleClick = () => {
-        navigate(`/module/${id}`);
+    // Variantes para animar los hijos en cascada
+    const containerVariants = {
+        hidden: { opacity: 0, y: 40 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.6, staggerChildren: 0.2 } 
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, x: -20 },
+        visible: { opacity: 1, x: 0 }
     };
 
     return (
         <motion.section
             className={styles.course__section__container}
-            style={{ backgroundColor: color }}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            whileHover={{ scale: 1.02, boxShadow: "0 8px 24px rgba(0,0,0,0.15)" }}
+            style={{ 
+                borderLeft: `5px solid ${color}`,
+                '--module-color': color // Pasamos el color como variable CSS
+            }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
         >
-            <motion.div
-                className={styles.info__section}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-            >
-                <h2>{title}</h2>
-                <h6>{subtitle}</h6>
+            <div className={styles.info__section}>
+                <motion.h6 variants={itemVariants} style={{ color: color }}>
+                    {subtitle}
+                </motion.h6>
+                
+                <motion.h2 variants={itemVariants}>
+                    {title}
+                </motion.h2>
 
-                <motion.div
-                    className={styles.options__container}
-                    initial="hidden"
-                    whileInView="visible"
-                    variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: {
-                            opacity: 1,
-                            y: 0,
-                            transition: { delayChildren: 0.3, staggerChildren: 0.15 },
-                        },
-                    }}
-                >
-                    <button
+                {/* Este es el contenedor que ahora pondrá todo en una línea */}
+                <motion.div className={styles.options__container} variants={itemVariants}>
+                    <motion.button
                         className={`${styles.option} ${styles.aprende}`}
-                        onClick={handleClick}
-                    >
-                        Aprende
-                    </button>
-
-                    <motion.a
-                        href={videoUrl || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${styles.option} ${styles.video}`}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.05, filter: "brightness(1.1)" }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => navigate(`/module/${id}`)}
                     >
-                        Video tutorial
-                    </motion.a>
+                        Comenzar Ahora
+                    </motion.button>
 
-                    <motion.a
-                        href={pdfUrl || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${styles.option} ${styles.ref}`}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Referencias
-                    </motion.a>
+                    {videoUrl && (
+                        <motion.a
+                            href={videoUrl}
+                            target="_blank"
+                            className={`${styles.option} ${styles.video}`}
+                            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                        >
+                            Tutorial
+                        </motion.a>
+                    )}
+
+                    {pdfUrl && (
+                        <motion.a
+                            href={pdfUrl}
+                            target="_blank"
+                            className={`${styles.option} ${styles.ref}`}
+                            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                        >
+                            Documentos
+                        </motion.a>
+                    )}
                 </motion.div>
-            </motion.div>
+            </div>
 
-            <motion.img
-                src={img}
-                alt={title}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-            />
+            <motion.div className={styles.image__wrapper}>
+                <motion.img
+                    src={img}
+                    alt={title}
+                    initial={{ opacity: 0, scale: 0.5, rotate: -5 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", damping: 12, stiffness: 100 }}
+                    style={{ filter: `drop-shadow(0 20px 40px ${color}66)` }}
+                />
+            </motion.div>
         </motion.section>
     );
 };
