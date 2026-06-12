@@ -1,15 +1,19 @@
 .container {
-    width: 99.5vw;
+    width: 100%; /* Cambiado de 99.5vw a 100% para evitar líneas blancas en los bordes */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background-color: #1a1c24; /* 🌟 Unificamos el fondo base para que nunca se vea blanco */
+    overflow-x: hidden;
 }
-.all__courses__section{
+
+.all__courses__section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    background-color: #282a35;
+    padding: 4rem 2rem; /* Más espacio arriba y abajo para que respire, usando padding */
+    margin: 0; /* 🌟 Forzamos a que NO tenga márgenes que dejen ver el fondo */
+    background-color: #1a1c24; /* 🌟 El mismo color oscuro continuo */
     gap: 2rem;
 }
