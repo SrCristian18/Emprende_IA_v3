@@ -49,7 +49,7 @@ export const CourseAdvice = ({ title, subtitle, img, color, id, pdfUrl, videoUrl
                         whileTap={{ scale: 0.95 }}
                         onClick={() => navigate(`/module/${id}`)}
                     >
-                        Introduccion
+                        Introducción
                     </motion.button>
 
                     {videoUrl && (
@@ -59,7 +59,7 @@ export const CourseAdvice = ({ title, subtitle, img, color, id, pdfUrl, videoUrl
                             className={`${styles.option} ${styles.video}`}
                             whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
                         >
-                            Video introduccion
+                            Video de introducción
                         </motion.a>
                     )}
 
@@ -70,7 +70,7 @@ export const CourseAdvice = ({ title, subtitle, img, color, id, pdfUrl, videoUrl
                             className={`${styles.option} ${styles.ref}`}
                             whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
                         >
-                            Bibliografia
+                            Bibliografía
                         </motion.a>
                     )}
                 </motion.div>
