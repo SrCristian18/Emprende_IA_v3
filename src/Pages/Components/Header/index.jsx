@@ -57,7 +57,7 @@ export const Header = () => {
                     <li><Link to="/chat">Chat IA</Link></li> 
                 </ul>
                 <Link className={styles.login__btn} to="/login">
-                    <img src="/assets/perfilline.svg" alt="" style={{ filter: "invert(1)" }} />
+                    <img src={`${import.meta.env.BASE_URL}assets/perfilline.svg`} alt="" style={{ filter: "invert(1)" }} />
                     Iniciar sesión
                 </Link>
             </div>

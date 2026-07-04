@@ -38,7 +38,7 @@ const ImportanceSlide = ({ importancia }) => {
             </motion.section>
             
             {/*<section className={styles.graphic__container}>
-                <img src="/assets/yellow__cartoon.png" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/yellow__cartoon.png`} alt="" />
             </section><div className={styles.figures__backgorund}>
            </div>*/}
             

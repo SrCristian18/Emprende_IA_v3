@@ -140,7 +140,7 @@ const Login = () => {
                         className={styles.loginWith__button}
 
                     >
-                        <img className={styles.button__icon} src="./assets/google.svg" alt="" /> Inicia sesion con Google
+                        <img className={styles.button__icon} src={`${import.meta.env.BASE_URL}assets/google.svg`} alt="" /> Inicia sesion con Google
                     </button>
                     <button
 
@@ -148,7 +148,7 @@ const Login = () => {
                         onClick={""}
                         className={styles.loginWith__button}
                     >
-                        <img className={styles.button__icon} src="/assets/outlook.svg" alt="" />
+                        <img className={styles.button__icon} src={`${import.meta.env.BASE_URL}assets/outlook.svg`} alt="" />
                         Inicia sesion con Outlook
                     </button>
 
@@ -157,7 +157,7 @@ const Login = () => {
                     </p>
                 </div>
                 <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                    <img style={{ width: "3.5%", margin: 0, paddingTop: "0.1rem" }} src="/assets/lock.svg" alt="" />
+                    <img style={{ width: "3.5%", margin: 0, paddingTop: "0.1rem" }} src={`${import.meta.env.BASE_URL}assets/lock.svg`} alt="" />
                     <p style={{ margin: "0px", padding: "0px", color: "#b4b4b4" }}>Por tu seguridad, nunca compartas tus credenciales de acceso usuario, contraseña o tokens con nadie.</p>
                 </div>
             </section>

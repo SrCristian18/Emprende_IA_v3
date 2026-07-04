@@ -14,7 +14,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/chat")
-@CrossOrigin(origins = "*")
+
+// Restringe el acceso únicamente al dominio seguro de la plataforma
+@CrossOrigin(origins = "https://gisistinfo.unicartagena.edu.co")
+
 public class ChatController {
 
     @Autowired

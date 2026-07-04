@@ -20,7 +20,7 @@ const SidebarEstudiante = ({ onSeleccionarOpcion, opcionSeleccionada }) => {
                     onClick={() => onSeleccionarOpcion("OP1")}
                 >
                     <div className={`${opcionSeleccionada === "OP1" ? styles.boxactive : ""}`}></div>
-                    <img src="/assets/homeline.svg" alt="Inicio" className={styles.icon} />
+                    <img src={`${import.meta.env.BASE_URL}assets/homeline.svg`} alt="Inicio" className={styles.icon} />
                     <span className={styles.text}>Inicio</span>
                 </li>
 
@@ -29,7 +29,7 @@ const SidebarEstudiante = ({ onSeleccionarOpcion, opcionSeleccionada }) => {
                     onClick={() => onSeleccionarOpcion("OP2")}
                 >
                     <div className={`${opcionSeleccionada === "OP2" ? styles.boxactive : ""}`}></div>
-                    <img src="/assets/documentline.svg" alt="Módulos" className={styles.icon} />
+                    <img src={`${import.meta.env.BASE_URL}assets/documentline.svg`} alt="Módulos" className={styles.icon} />
                     <span className={styles.text}>Módulos</span>
                 </li>
 
@@ -38,7 +38,7 @@ const SidebarEstudiante = ({ onSeleccionarOpcion, opcionSeleccionada }) => {
                     onClick={() => onSeleccionarOpcion("OP3")}
                 >
                     <div className={`${opcionSeleccionada === "OP3" ? styles.boxactive : ""}`}></div>
-                    <img src="/assets/progresoline.svg" alt="Progreso" className={styles.icon} />
+                    <img src={`${import.meta.env.BASE_URL}assets/progresoline.svg`} alt="Progreso" className={styles.icon} />
                     <span className={styles.text}>Progreso</span>
                 </li>
 
@@ -47,7 +47,7 @@ const SidebarEstudiante = ({ onSeleccionarOpcion, opcionSeleccionada }) => {
                     onClick={() => onSeleccionarOpcion("OP4")}
                 >
                     <div className={`${opcionSeleccionada === "OP4" ? styles.boxactive : ""}`}></div>
-                    <img src="/assets/mensajeline.svg" alt="Chat con IA" className={styles.icon} />
+                    <img src={`${import.meta.env.BASE_URL}assets/mensajeline.svg`} alt="Chat con IA" className={styles.icon} />
                     <span className={styles.text}>Chat con IA</span>
                 </li>
 
@@ -56,7 +56,7 @@ const SidebarEstudiante = ({ onSeleccionarOpcion, opcionSeleccionada }) => {
                     onClick={() => onSeleccionarOpcion("OP5")}
                 >
                     <div className={`${opcionSeleccionada === "OP5" ? styles.boxactive : ""}`}></div>
-                    <img src="/assets/perfilline.svg" alt="Perfil" className={styles.icon} />
+                    <img src={`${import.meta.env.BASE_URL}assets/perfilline.svg`} alt="Perfil" className={styles.icon} />
                     <span className={styles.text}>Perfil</span>
                 </li>
             </ul>

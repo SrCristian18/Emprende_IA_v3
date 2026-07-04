@@ -7,9 +7,10 @@ import { Header } from "./Pages/Components/Header";
 
 const AppRoutes = () =>{
     
-    return(
             
-            <BrowserRouter>
+            return(
+            // Se define el basename correspondiente a la subruta
+            <BrowserRouter basename="/emprende-ia">
                 
                 <Routes>
                     

@@ -25,7 +25,7 @@ export default function MoreButton({general__info}) {
     return (
         <div>
             <div className={styles.circle__question} onClick={handleOpen}>
-                <img src="/assets/plus.svg" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/plus.svg`} alt="" />
             </div>
             <Modal
                 keepMounted
