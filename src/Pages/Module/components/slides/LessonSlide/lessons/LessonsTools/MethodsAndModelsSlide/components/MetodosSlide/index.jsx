@@ -112,7 +112,7 @@ const MetodosSlide = ({ metodos }) => {
             </motion.div>
 
 
-            <motion.img src="/assets/circle.png" alt=""
+            <motion.img src={`${import.meta.env.BASE_URL}assets/circle.png`} alt=""
                 className={styles.circle}
                 variants={variants.circle}
                 initial="hidden"

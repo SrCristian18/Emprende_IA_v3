@@ -1,5 +1,5 @@
 export async function enviarPregunta(pregunta, contexto, preguntasModulo) {
-  const res = await fetch("http://localhost:8080/api/chat", {
+  const res = await fetch("/emprende-api/api/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

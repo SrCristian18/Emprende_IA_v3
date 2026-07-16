@@ -57,7 +57,7 @@ const CongratsSlide = ({ module }) => (
 
         {/* Imagen de graduación */}
         <motion.img
-            src="/assets/graduated2.svg"
+            src={`${import.meta.env.BASE_URL}assets/graduated2.svg`}
             alt="Dos jóvenes graduándose"
             className={styles.image}
             initial={{ y: 100, opacity: 0 }}

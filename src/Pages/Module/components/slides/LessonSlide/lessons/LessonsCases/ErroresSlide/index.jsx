@@ -63,7 +63,7 @@ const ErroresSlide = ({ errores }) => {
                     animate="visible"
                 >
                     <motion.img
-                        src="/assets/circle__lines.svg"
+                        src={`${import.meta.env.BASE_URL}assets/circle__lines.svg`}
                         alt="errores exitosos gráfico"
                         className={styles.graphic__img}
                     />

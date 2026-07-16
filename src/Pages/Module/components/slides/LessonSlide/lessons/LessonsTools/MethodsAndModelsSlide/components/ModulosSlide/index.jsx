@@ -88,7 +88,7 @@ const ModulosSlide = ({ modelos }) => {
                 </motion.div>
 
                 <motion.img
-                    src="/assets/circle.png"
+                    src={`${import.meta.env.BASE_URL}assets/circle.png`}
                     alt="circle"
                     className={styles.circle__figure}
                     variants={variants.circle}

@@ -68,7 +68,7 @@ const CasosSlide = ({ casos }) => {
                 animate="visible"
             >
                 <motion.img
-                    src="/assets/cases__graphic.svg"
+                    src={`${import.meta.env.BASE_URL}assets/cases__graphic.svg`}
                     alt="Casos exitosos gráfico"
                     className={styles.graphic__img}
                 />
